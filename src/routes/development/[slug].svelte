@@ -5,13 +5,13 @@
     export async function preload({ params }) {
         try{
         const slug = params.slug;
-        const filter = '*[_type == "project" && slug.current == $slug && category == "design"][0]';
+        const filter = '*[_type == "project" && slug.current == $slug && category == "development"][0]';
 
         const query = filter;
         const post = await client.fetch(query, {slug});
         let createdAt = new String(post._createdAt).toString();
         console.log(createdAt);
-        const nextPost= await client.fetch("*[_type == 'project' && $createdAt< _createdAt && category == 'design'] | order(_createdAt asc)[0]", {createdAt})
+        const nextPost= await client.fetch("*[_type == 'project' && $createdAt< _createdAt && category == 'development'] | order(_createdAt asc)[0]", {createdAt})
         console.log('CurrentPost', post)
         console.log('NextPost', nextPost)
         return {post, nextPost}

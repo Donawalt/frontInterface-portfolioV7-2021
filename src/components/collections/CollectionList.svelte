@@ -1,5 +1,7 @@
 <script>
     import Element from "./utils/CollectionElement.svelte"
+
+    export let Posts;
 </script>
 
 <style lang="scss">
@@ -30,10 +32,10 @@
     }
 </style>
 <ul class="collection-list grid">
-    {#each Array(15) as _, i}
+    {#each Posts as post, i}
          <!-- content here -->
          <li class:big={i === 4 || i === 10 || i === 25}>
-             <Element type={"big"}/>
+             <Element type={"big"} Post={post} Index={i}/>
          </li>
     {/each}
 </ul>

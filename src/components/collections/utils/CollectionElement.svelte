@@ -1,9 +1,10 @@
 <script>
-    export let link;
-    export let name;
-    export let id;
-    export let ressource;
+    import urlFor from '../../../../scripts/urlFor.js'
+
+    export let Post;
+    export let Index;
     export let type;
+    console.log(Post);
 </script>
 
 <style lang="scss">
@@ -53,6 +54,9 @@
             }
         }
     }
+    a{
+        text-decoration: none;
+    }
 </style>
 
 <!-- <a href={link}>
@@ -65,11 +69,11 @@
     <div></div>
 </a> -->
 
-<a class='link project-item' class:type={type}>
+<a class='link project-item' class:type={type} href={Post.category +'/'+ Post.slug.current}>
     <div>
-    <p>01 ⁕ Fondation Louis Vuitton</p>
+    <p>{Index > 8 ? Index + 1 : "0" + (Index + 1)} ⁕ {Post.name}</p>
     <picture>
-        <img src="https://source.unsplash.com/random/300*200">
+        <img src={urlFor(Post.cover).width(300).height(200)} alt="image de couverture">
     </picture>
     </div>
     <div class="top">

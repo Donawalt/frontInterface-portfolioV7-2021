@@ -8,7 +8,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: rgba(255,255,255,0.25);
+        background-color: rgba(255,255,255,0.15);
         -webkit-border-top-left-radius: 16px;
         -moz-border-radius-topleft: 16px;
         border-top-left-radius: 16px; 
@@ -17,6 +17,7 @@
             font-weight: 500;
             font-size: 18px;
             text-transform: uppercase;
+            text-decoration:none;
         }
         ul, li {
             list-style: none;
