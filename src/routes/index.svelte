@@ -8,6 +8,8 @@
 	let stopAnimation = false;
 	let videos ;
 	onMount(()=>{
+		// let dat = require('dat.gui');
+		//const gui = new dat.GUI();
 		let canvas = document.querySelector("canvas.webgl");
 		let scene = new THREE.Scene();
 		let animatable = false;
@@ -43,13 +45,18 @@
 		};
 
 		let Lights = [];
-		const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x0000ff, 1);
+		const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x0000ff, 2);
 		const directionalLight = new THREE.DirectionalLight(0x00fffc, 2);
 		const directionalLight1 = new THREE.DirectionalLight(0xfffffc, 2);
-
+		const light = new THREE.PointLight( 0xffffff, 2, 100 );
+		light.position.set( 1, -3, 0 );
+/* 		gui.add(light.position, 'x').min(-50).max(50)
+		gui.add(light.position, 'y').min(-50).max(50)
+		gui.add(light.position, 'z').min(-50).max(50) */
+		gsap.fromTo(light.position, {z: -50}, {z: 50, duration: 4, repeat: -1, yoyo:true});
 		const floor = new THREE.Mesh(
 			new THREE.PlaneGeometry(20, 20),
-			new THREE.MeshStandardMaterial({ color: "#111111" })
+			new THREE.MeshStandardMaterial({ color: "#000000", roughness: 0.2, metalness: 0.89 })
 		);
 
 		const sizes = {
@@ -78,7 +85,6 @@
 			videos.video1.loop = true;
 			videos.video1.load();
 			videos.video1.play();
-			videos.video1.muted = false;
 
 			videosTextures.texture1.repeat.y = 3.64;
 			videosTextures.texture1.repeat.x = 0.82;
@@ -167,6 +173,7 @@
 				scene.add(hemisphereLight);
 				scene.add(directionalLight);
 				scene.add(directionalLight1);
+				scene.add( light );
 
 				floor.rotation.x = -Math.PI * 0.5;
  				floor.position.y = 0;

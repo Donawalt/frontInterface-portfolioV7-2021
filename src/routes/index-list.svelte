@@ -65,7 +65,6 @@ export async function preload({ params }) {
 				height: 100%;
 				width: 100%;
 				display: block;
-				background-color: red;
 				border-radius: 16px;
 				overflow: hidden;
 				display: flex;
