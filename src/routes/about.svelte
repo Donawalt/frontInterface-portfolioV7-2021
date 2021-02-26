@@ -42,7 +42,30 @@
 	header, #intro{
 			grid-column: 2/8;
 		}
-
+		
+		#intro{
+			display:grid;
+			grid-template-columns: repeat(6, 1fr);
+			grid-gap: 16px;
+			.canvas{
+				grid-column: 1/4;
+				overflow: hidden;
+				display: flex;
+				justify-content:center;
+				align-items:center;
+				height: 484px;
+				z-index: 0;
+				video{
+					display: block;
+					width: 150%;
+				}
+			}
+			p{	
+				z-index: 100;
+				margin-top: -35%;
+				grid-column: 3/7;
+			}
+		}
 		#text, #previously, #awards, #contact{
 			grid-column: 1/9;
 			margin-bottom: 200px;
@@ -214,7 +237,9 @@
 		</div>
 	</header>
 	<div id="intro">
-		<div class='canvas'></div>
+		<div class='canvas'>
+			<video src='/about/about.mp4' muted loop autoplay></video>
+		</div>
 		<p>
 			Hi, I’m Donaël,  I am a French Creative Dev, I do Photography and Graphic Design alongside.
 		</p>
