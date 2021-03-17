@@ -30,9 +30,29 @@
         }
         @media screen and (max-width: 768px){
             // Tablette
+            h1{
+                font-style: normal;
+                font-weight: normal;
+                font-size: 60px;
+                line-height: 97%;
+                max-width: 90%;
+            }
+            p{
+                font-size: 14px;
+            }
         }
         @media screen and (max-width: 425px){
             // Mobile
+            margin-bottom: 32px;
+            h1{
+                font-style: normal;
+                font-weight: normal;
+                font-size: 30px;
+                line-height: 97%;
+            }
+            p{
+                font-size: 8px;
+            }
         }
     }
     div{
@@ -47,6 +67,11 @@
             img{
                 width: 100%;
             }
+        }
+        @media screen and (max-width: 425px){
+            margin-left: 16px;
+            margin-right: 16px;
+            height: 111px;
         }
     }
 </style>

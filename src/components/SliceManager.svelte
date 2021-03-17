@@ -11,13 +11,17 @@
 
     export let Slices;
 </script>
-<style>
+<style lang="scss">
     .grid{
         display:grid;
         grid-template-columns: repeat(8, 1fr);
         column-gap: 16px;
         margin-left: 32px;
         margin-right: 32px;
+        @media screen and (max-width: 429px){
+          margin-left: 16px;
+          margin-right: 16px;
+        }
     }
 </style>
 <section class="grid">

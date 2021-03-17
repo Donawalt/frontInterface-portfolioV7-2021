@@ -51,6 +51,7 @@
                 display: flex;
                 opacity: 1;
                 duration: 300ms;
+                
             }
         }
     }
@@ -67,6 +68,12 @@
            picture{
                border-radius: 6px;
            }
+            }
+
+            .top{
+                svg{        
+                    width: 60px;
+                }
             }
         }
 </style>

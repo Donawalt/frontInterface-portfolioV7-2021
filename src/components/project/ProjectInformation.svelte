@@ -31,6 +31,22 @@
                 list-style: none;
             }
         }
+        @media screen and (max-width: 425px) {
+            margin-top: 32px;
+            grid-template-columns: repeat(1, 1fr);
+            margin-left: 16px;
+            margin-right: 16px;
+            .title{
+                margin-bottom: 0px;
+            }
+            .information_intro, .information_skills{
+                grid-column: 1;
+                p{
+                    margin-top: 0px;
+                }
+            }
+
+        }
     }
 </style>
 
