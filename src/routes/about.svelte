@@ -301,6 +301,13 @@
 					<picture class='price-logo'>
 						<img src="/about/awards/cssd.svg" />
 					</picture>
+					<a class='award' >Special Kudos</a>
+					<a class="name" >Fédération Française d'Aérostation</a>
+				</li>
+				<li>
+					<picture class='price-logo'>
+						<img src="/about/awards/cssd.svg" />
+					</picture>
 					<a class='award' >Site of the Day</a>
 					<a class="name" >Bihua</a>
 				</li>

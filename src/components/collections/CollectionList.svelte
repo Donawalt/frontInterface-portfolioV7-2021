@@ -30,6 +30,26 @@
         margin-top: 130px;
         margin-bottom: 130px;
     }
+    @media screen and (max-width: 1024px){
+            // Petit Desktop
+        }
+        @media screen and (max-width: 768px){
+            // Tablette
+            .grid{
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media screen and (max-width: 425px){
+            // Mobile
+            .grid{
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+            .collection-list{
+                margin-top: 32px;
+            }
+            
+        }
 </style>
 <ul class="collection-list grid">
     {#each Posts as post, i}

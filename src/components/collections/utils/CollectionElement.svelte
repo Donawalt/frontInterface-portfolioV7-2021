@@ -57,6 +57,18 @@
     a{
         text-decoration: none;
     }
+    @media screen and (max-width: 425px){
+            // Tablette
+            .project-item{
+                p{
+               font-size: 8px;
+               margin-left: 6px;
+           }
+           picture{
+               border-radius: 6px;
+           }
+            }
+        }
 </style>
 
 <!-- <a href={link}>

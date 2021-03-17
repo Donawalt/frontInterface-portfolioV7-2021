@@ -25,6 +25,15 @@
             max-width: 50%;
             margin:auto;
         }
+        @media screen and (max-width: 1024px){
+            // Petit Desktop
+        }
+        @media screen and (max-width: 768px){
+            // Tablette
+        }
+        @media screen and (max-width: 425px){
+            // Mobile
+        }
     }
     div{
         height: 480px;
