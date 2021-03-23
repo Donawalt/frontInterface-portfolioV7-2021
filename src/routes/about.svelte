@@ -30,6 +30,9 @@
             padding: 0px;
             margin-right: 8px;
             margin-top: 8px;
+			@media screen and (max-width: 425px){
+                font-size: 12px;
+            }
         }
         .content{
             padding: 0px;
@@ -37,6 +40,9 @@
             font-weight: normal;
             font-size: 50px;
             text-transform: uppercase;
+			@media screen and (max-width: 425px){
+                font-size: 25px;
+            }
         }
     }
 	header, #intro{

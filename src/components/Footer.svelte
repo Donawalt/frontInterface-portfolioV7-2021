@@ -30,6 +30,24 @@
                 margin: 0;
             }
         }
+        @media screen and (max-width: 1024px){
+            // Petit Desktop
+        }
+        @media screen and (max-width: 768px){
+            // Tablette
+        }
+        @media screen and (max-width: 425px){
+            // Mobile
+            margin-left: 0px;
+			padding-left: 16px;
+			padding-right: 16px;
+            &>a{
+                display: none;
+            }
+			a{
+				font-size: 14px;
+			}
+        }
     }
 </style>
 

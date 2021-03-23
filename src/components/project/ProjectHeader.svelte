@@ -22,7 +22,7 @@
             text-transform: uppercase;
             font-feature-settings: 'ordn' on, 'swsh' on, 'ornm' on;
             text-align:center;
-            max-width: 50%;
+            max-width: 90%;
             margin:auto;
         }
         @media screen and (max-width: 1024px){
@@ -56,22 +56,25 @@
         }
     }
     div{
-        height: 480px;
+        height: fit-content;
         margin-left: 32px;
         margin-right: 32px;
         border-radius: 16px;
         overflow: hidden;
         picture{
-            display:block;
+            display:flex;
             width: 100%;
+            height: fit-content;
+            flex-direction: center;
+            align-items:center;
             img{
                 width: 100%;
+                height: 100%;
             }
         }
         @media screen and (max-width: 425px){
             margin-left: 16px;
             margin-right: 16px;
-            height: 111px;
         }
     }
 </style>

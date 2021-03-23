@@ -21,7 +21,7 @@
         }
         @media screen and (max-width: 429px){
             grid-column: 1/9;
-            margin-bottom: 32px;
+            margin-bottom: 64px;
         }
     }
 </style>

@@ -19,10 +19,19 @@
             overflow:hidden;
             &:nth-child(1){
                 grid-column: 1/4;
+                @media screen and (max-width: 425px){
+                        grid-column: initial;
+                        margin-left: -16px;
+                }
             }
             &:nth-child(2){
                 margin-top: 25%;
                 grid-column: 5/8;
+                @media screen and (max-width: 425px){
+                        grid-column: initial;
+                        margin-left: 16px;
+                        margin-top: 0%;
+                }
             }
             display:block;
             width:100%;
@@ -33,21 +42,36 @@
                 height: auto;
             }
         }
-        &.revert{
+        &.right{
             picture{
                 &:nth-child(1){
                     margin-top: 25%;
                     grid-column: 2/5;
+                    @media screen and (max-width: 425px){
+                        grid-column: initial;
+                        margin-left: -16px;
+                        margin-top: 0%;
+                    }
                 }
                 &:nth-child(2){
                     margin-top: 0px;
                     grid-column: 6/9;
+                    @media screen and (max-width: 425px){
+                        grid-column: initial;
+                        margin-left: 16px;
+                    }
                 }
             }
         }
+        @media screen and (max-width: 425px){
+            margin-bottom: 64px;
+            grid-template-columns: none;
+            grid-gap: 32px;
+            grid-template-rows: auto auto;
+        }
     }
 </style>
-<section class='revert'>
+<section class='{Side}'>
     <picture>
         <img src={urlFor(FirstImage).width(506)} alt={FirstAlt}/>
     </picture>

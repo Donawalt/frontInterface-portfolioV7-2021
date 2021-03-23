@@ -29,6 +29,9 @@
             font-size: 24px;
             margin-bottom: 16px;
             opacity: 0.7;
+            @media screen and (max-width: 425px){
+                font-size: 14px;
+            }
         }
         p{
             margin:0;
@@ -38,6 +41,15 @@
             font-weight: normal;
             font-size: 60px;
             line-height: 97%;
+            @media screen and (max-width: 425px){
+                font-size: 30px;
+            }
+        }
+        @media screen and (max-width: 425px){
+            &.right, &.center, &.left{
+                grid-column: 1/9;
+            }
+            margin-bottom: 64px;
         }
     }
 </style>

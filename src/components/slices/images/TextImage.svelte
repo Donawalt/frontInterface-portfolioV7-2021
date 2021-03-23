@@ -16,6 +16,12 @@
         grid-template-columns: 1fr 1fr;
         grid-gap: 16px;
         margin-bottom: 180px;
+        @media screen and (max-width: 425px){
+            grid-template-columns: none;
+            grid-template-rows: auto auto;
+            grid-column: 1/9;
+            margin-bottom: 64px;
+        }
         picture{
             border-radius: 16px;
             overflow:hidden;
@@ -26,6 +32,9 @@
                 display:block;
                 width: 100%;
                 height: auto;
+            }
+            @media screen and (max-width: 425px){
+                grid-row: 2;
             }
         }
         .ti__content{
@@ -39,6 +48,9 @@
             padding: 0px;
             margin-right: 8px;
             margin-top: 8px;
+            @media screen and (max-width: 425px){
+                font-size: 12px;
+            }
         }
         .content{
             padding: 0px;
@@ -46,6 +58,9 @@
             font-weight: normal;
             font-size: 50px;
             text-transform: uppercase;
+            @media screen and (max-width: 425px){
+                font-size: 25px;
+            }
         }
         }
     }

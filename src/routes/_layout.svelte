@@ -98,6 +98,9 @@
 </script>
 
 <style lang='scss'>
+	body{
+		width: 100%;
+	}
 	#noise{
 		position: fixed;
 		top:0;

@@ -7,7 +7,7 @@
 <style lang='scss'>
     section{
         height: fit-content;
-        width: 100%;
+        width: 99vw;
         overflow:hidden;
         border-radius: 16px;
         grid-column: 1/9;
@@ -20,6 +20,13 @@
                 width: 100%;
                 height: auto;
             }
+        }
+        margin-left: -32px;
+            margin-right: -32px;
+        @media screen and (max-width: 425px){
+            margin-left: -16px;
+            margin-right: -16px;
+            margin-bottom: 64px;
         }
     }
 </style>

@@ -61,6 +61,24 @@
                 margin: auto;
             }
         }
+        @media screen and (max-width: 425px){
+            border-radius: 60px;
+            margin-left: 16px;
+            margin-right: 16px;
+            .footer__front{
+                .front__next{
+                    font-size: 12px;
+                }
+                .front__title{
+                    font-size: 30px;
+                }
+                .front__link{
+                    svg{
+                width: 60px;
+            }
+                }
+            }
+        }
     }
 </style>
 <footer>
