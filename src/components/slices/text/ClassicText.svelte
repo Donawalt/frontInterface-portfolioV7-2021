@@ -32,9 +32,10 @@
         }
     }
     section{
-        grid-column: 1/9;
+        grid-column: 2/8;
         margin-bottom: 180px;
         @media screen and (max-width: 425px){
+            grid-column: 1/9;
             margin-bottom: 64px;
         }
     }

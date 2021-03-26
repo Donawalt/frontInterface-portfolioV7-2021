@@ -8,6 +8,10 @@
 		grid-gap: 16px;
 		margin-left: 32px;
 		margin-right: 32px;
+		@media screen and (max-width: 425px){
+			margin-left: 16px;
+			margin-right: 16px;
+		}
 		font-weight: 300;
 		h1{
 			font-family: 'Jost*';
@@ -19,6 +23,9 @@
 			text-transform: uppercase;
 
 			color: #9B9999;
+			@media screen and (max-width: 425px){
+				font-size: 12px;
+			}
 		}
 		h2{ 
         display: flex;
@@ -47,34 +54,23 @@
     }
 	header, #intro{
 			grid-column: 2/8;
+			@media screen and (max-width: 768px){
+				grid-column: 1/9;
+			}
 		}
 		
 		#intro{
 			display:grid;
-			grid-template-columns: repeat(6, 1fr);
-			grid-gap: 16px;
-			.canvas{
-				grid-column: 1/4;
-				overflow: hidden;
-				display: flex;
-				justify-content:center;
-				align-items:center;
-				height: 484px;
-				z-index: 0;
-				video{
-					display: block;
-					width: 150%;
-				}
-			}
 			p{	
 				z-index: 100;
-				margin-top: -35%;
-				grid-column: 3/7;
 			}
 		}
 		#text, #previously, #awards, #contact{
 			grid-column: 1/9;
 			margin-bottom: 200px;
+			@media screen and (max-width: 425px){
+				margin-bottom: 80px;
+			}
 		}
 	}
 
@@ -83,7 +79,7 @@
 		margin-top: 130px;
 		&>div{
 			display: grid;
-		grid-template-rows: 1fr 1fr;
+		grid-template-rows: auto auto;
 		grid-gap: 16px;
 		div{
 			display: grid;
@@ -102,6 +98,10 @@
 					height: 100%;
 				}
 			}
+			@media screen and (max-width: 425px){
+				grid-gap: 8px;
+				height: 40px;
+			}
 			p{
 			font-family: 'scillaregular';
 			font-style: normal;
@@ -115,28 +115,91 @@
 
 			margin:0;
 			padding: 0;
+			@media screen and (max-width: 768px){
+				font-size: 80px;
+				margin-top:auto;
+				margin-bottom: auto;
+			}
+			@media screen and (max-width: 425px){
+				font-size: 30px;
+			}
 		}
 		}
 		}
 		margin-bottom: 200px;
+		@media screen and (max-width: 425px){
+				margin-top: 70px;
+				margin-bottom: 30px;
+			}
 	}
 	#intro{
 		p{
-			grid-column: 4/8;
 			font-family: 'Jost*';
 			font-style: normal;
 			font-weight: 200;
 			font-size: 60px;
 			line-height: 87px;
-			text-indent: 172px;
+			@media screen and (max-width: 425px){
+				font-size: 30px;
+    line-height: 100%;
+			}
 		}
 		margin-bottom: 200px;
+		@media screen and(max-width: 425px){
+		margin-bottom: 60px;
+			}
+	}
+	.illustration{
+		position: relative;
+		picture{
+			position: absolute;
+			&:nth-child(1){
+				top: 0;
+				left: 0;
+				transform: translateY(-50%);
+			}
+			&:nth-child(2){
+				top: -25px;
+				right: 20px;
+			}
+			&:nth-child(3){
+				bottom: 0;
+				left: 40px;
+				transform: translateY(80%);
+			}
+			&:nth-child(4){
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			&:nth-child(5){
+				right: 0;
+				bottom: 0;
+				transform: translateY(50%);
+			}
+		}
 	}
 	#text{
 		display:grid;
 		grid-template-columns: repeat(8, 1fr);
+		grid-gap: 16px;
 		.content{
 			grid-column: 1/5;
+		}
+		.illustration{
+			grid-column: 5/9;
+		}
+		@media screen and (max-width: 425px){
+			display: block;
+			position: relative;
+			.illustration{
+				position: absolute;
+				top:0;
+				z-index: -1;
+				opacity: 0.2;
+				height: 100%;
+				width: 100%;
+			}
 		}
 	}
 	#previously, #awards{
@@ -145,6 +208,9 @@
 		h2{
 			grid-column: 1/9;
 			margin-bottom: 60px;
+			@media screen and (max-width: 425px){
+				margin-bottom: 0px;
+			}
 		}
 		div{
 			grid-column: 2/8;
@@ -153,10 +219,17 @@
 			p{
 				grid-column: 2/6;
 				margin-bottom: 60px;
+				@media screen and (max-width: 425px){
+				grid-column: 1/7;
+				margin-bottom: 30px;
+				}
 			}
 			ul{
 				grid-column: 1/7;
 				list-style: none;
+			}
+			@media screen and (max-width: 425px){
+				grid-column: 1/9;
 			}
 		}
 	}
@@ -165,9 +238,13 @@
 			display:flex;
 			flex-direction: row;
 			justify-content: space-around;
+			padding: 0px;
+			margin: 0px;
 			li{
 				display:flex;
 				flex-direction: column;
+				padding: 0px;
+				margin: 0px;
 				p{
 					margin: 0;
 					padding: 0;
@@ -176,6 +253,16 @@
 						font-weight: 500;
 					}
 				}
+			}
+			@media screen and (max-width: 425px){
+					flex-direction: column;
+					justify-content: initial;
+					li{
+						margin-bottom: 32px;
+						img{
+							width: 100%;
+						}
+					}
 			}
 		}
 	}
@@ -220,7 +307,10 @@
 			text-align: center;
 			text-decoration-line: underline;
 			font-feature-settings: 'salt' on, 'ss01' on;
-
+			@media screen and (max-width: 425px){
+				 font-size: 28px;
+				 line-height: 100%;
+			}
 		}
 	}
 </style>
@@ -243,9 +333,6 @@
 		</div>
 	</header>
 	<div id="intro">
-		<div class='canvas'>
-			<video src='/about/about.mp4' muted loop autoplay></video>
-		</div>
 		<p>
 			Hi, I’m Donaël,  I am a French Creative Dev, I do Photography and Graphic Design alongside.
 		</p>
@@ -262,8 +349,12 @@
 				I love everything to do with visual design, mobile and web projects as well as branding, typography and animations. In the future I would like to work on more immersive and interactive projects, where the user experience is the key word. 
 			</p>
 		</div>
-		<div>
-			<picture><img src="" alt=""/></picture>
+		<div class="illustration">
+			<picture class=""><img src="/about/grid/team.png" alt=""/></picture>
+			<picture class=""><img src="/about/grid/paris_1.png" alt=""/></picture>
+			<picture class=""><img src="/about/grid/dijon_1.png" alt=""/></picture>
+			<picture class=""><img src="/about/grid/dijon_2.png" alt=""/></picture>
+			<picture class=""><img src="/about/grid/paris_2.png" alt=""/></picture>
 		</div>
 	</div>
 	<div id="previously">
