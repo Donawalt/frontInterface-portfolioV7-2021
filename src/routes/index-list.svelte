@@ -44,6 +44,11 @@ export async function preload({ params }) {
         grid-row-gap: 24px;
 		margin-left: 32px;
 		margin-right: 32px;
+		@media screen and (max-width: 425px){
+			display: block;
+			margin-left: 16px;
+			margin-right: 16px;
+		}
 		.left{
 			display: grid;
 			grid-template-rows: auto 1fr 1fr;
@@ -101,9 +106,27 @@ export async function preload({ params }) {
 				padding:0;
 				}
 			}
+			@media screen and (max-width: 425px){
+				height: auto;
+				position: initial;
+				margin-bottom: 30px;
+				h1{
+					font-size: 30px;
+					margin-bottom: 30px;
+				}
+				picture{
+					display: none; 
+				}
+				#list-links{
+					display: none;
+				}
+			}
 		}
 		.right{
 			grid-column: 4/9 ;
+			@media screen and (max-width: 425px){
+				grid-column: 1/9;
+			}
 		}
 	}
 </style>
@@ -120,10 +143,10 @@ export async function preload({ params }) {
 			what You <br/>
 			Want <br/>
 		</h1>
-		<picture>
+		<picture id="list-picture">
 			<img  src={picture ? picture : null} alt="">
 		</picture>
-		<div>
+		<div id="list-links">
 			<p>Social links</p>
 			<ul>
 				<li><a href="https://www.linkedin.com/in/dona%C3%ABl-walter/">⁕ Linkedin</a></li>

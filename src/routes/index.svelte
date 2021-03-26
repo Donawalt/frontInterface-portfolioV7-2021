@@ -188,12 +188,23 @@
 					camera.aspect = sizes.width / sizes.height;
 					camera.updateProjectionMatrix();
 
+					setTimeout(() => {
+						let xValuer = window.innerWidth > 425 ? -8 : -15;
+						let camPositions = { x: xValue, y: 4, z: 0 };
+						camera.position.x = camPositions.x;
+						camera.position.y = camPositions.y;
+						camera.position.z = camPositions.z;
+						camera.rotation.y = Math.PI * -0.5;
+						console.log('alert');
+					}, 500);
+
 					// Update renderer
 					renderer.setSize(sizes.width, sizes.height);
 					renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 				});
-
-				const camPositions = { x: -8, y: 4, z: 0 };
+				
+				let xValue = window.innerWidth > 425 ? -8 : -15;
+				let camPositions = { x: xValue, y: 4, z: 0 };
 				camera.position.x = camPositions.x;
 				camera.position.y = camPositions.y;
 				camera.position.z = camPositions.z;
@@ -283,6 +294,9 @@
 					top: 30px;
 					left: -20px;
 					cursor: pointer;
+					@media screen and (max-width: 425px){
+						transform: scale(0.5);
+					}
 				}
 
 				.text{
@@ -330,6 +344,17 @@
 			text-transform:initial;
 			font-feature-settings: 'ordn' on;
 		}
+		@media screen and (max-width: 425px){
+			.line-1{
+				font-size: 20px;
+			}
+			.line-2{
+				font-size: 30px;
+			}
+			.line-3{
+				font-size: 12px;
+			}
+		}
 	}
 	h2{
 		text-align: center;
@@ -364,6 +389,16 @@
 		.contact{
 			text-align: right;
 			margin-right: 32px;
+		}
+		@media screen and (max-width: 425px){
+			grid-template-rows: auto auto;
+			grid-template-columns: initial;
+			.contact, ul{
+				justify-content:center;
+				align-items:center;
+				text-align: center;
+				margin: 0;
+			}
 		}
 	}
 </style>

@@ -21,7 +21,7 @@
         grid-gap: 16px;
         width: 100%;
         margin-bottom: 80px;
-        height: 500px;
+        min-height: 500px;
         h2{
             display: flex;
             align-items: flex-end;
@@ -86,6 +86,33 @@
                 text-transform: uppercase;
                 text-decoration: none;
                 font-weight: 300;
+                @media screen and (max-width: 425px){
+                    font-size: 12px;
+                }
+            }
+        }
+        @media screen and (max-width: 425px){
+            display: block;
+            min-height: auto;
+            h2{
+                font-size: 25px;
+                transform: initial;
+                justify-content: initial;
+                text-align: left;
+                writing-mode: initial;
+                margin-bottom: 16px;
+            }
+            .list{
+                ul{
+                    a{
+                        p.number{
+                            font-size: 45px;
+                        }
+                        p.title{
+                            font-size: 24px;
+                        }
+                    }
+                }
             }
         }
     }

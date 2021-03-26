@@ -44,6 +44,8 @@
             .grid{
                 margin-left: 16px;
                 margin-right: 16px;
+                grid-auto-rows: 120px;
+                grid-row-gap: 8px;
             }
             .collection-list{
                 margin-top: 32px;
