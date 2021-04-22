@@ -529,7 +529,7 @@
 	</div>
 	<div id="contact" data-intersection="contact">
 		<h2><span class='number'>04</span> <span class='content'>Feel free to contact me</span></h2>
-		<a>contact@donaelwalter.com</a>
+		<a href="mailto:contact@donaelwalter.com" target="_blank">contact@donaelwalter.com</a>
 	</div>
 </section>
 <Footer/>

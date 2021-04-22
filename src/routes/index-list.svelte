@@ -2,7 +2,16 @@
 	import Footer from '../components/Footer.svelte'
 	import CollectionList from '../components/index-list/collection-list.svelte'
 	import urlFor from '../../scripts/urlFor.js'
+	import gsap from "gsap"
+	import { onMount } from 'svelte'
 
+	onMount(()=>{
+		let tl = gsap.timeline()
+		tl.fromTo('h1 .word', { opacity:0, y: 20 }, {y: 0, opacity: 1, duration: 0.8, stagger: 0.2})
+		tl.fromTo('#list-links .word', { opacity:0, y: 20 }, {y: 0, opacity: 1, duration: 0.8, stagger: 0.2})
+		tl.fromTo('#list-links p', {opacity:0}, {opacity: 1})
+		tl.fromTo('.right', {opacity: 0, y:5}, {opacity:1, y:0})
+	})
 
 	export let posts;
 	export let devPosts;
@@ -87,6 +96,7 @@ export async function preload({ params }) {
 			text-transform: uppercase;
 
 			color: #9B9999;
+			opacity: 0;
 			}
 			a{
 				font-family: "scillaregular";
@@ -96,6 +106,7 @@ export async function preload({ params }) {
 				line-height: 97%;
 				text-transform: uppercase;
 				text-decoration: none;
+				opacity:0;
 			}
 			ul{
 				margin:0;
@@ -124,9 +135,21 @@ export async function preload({ params }) {
 		}
 		.right{
 			grid-column: 4/9 ;
+			opacity:0;
 			@media screen and (max-width: 425px){
 				grid-column: 1/9;
 			}
+		}
+	}
+	h1{
+		.line{
+			overflow: hidden;
+			.word{
+				opacity: 0;
+			}
+		}
+		.line, .word{
+			display: block;
 		}
 	}
 </style>
@@ -138,10 +161,10 @@ export async function preload({ params }) {
 <section>
 	<div class="left">
 		<h1>
-			Find <br/>
-			exactly <br/>
-			what You <br/>
-			Want <br/>
+			<span class="line"><span class="word">Find</span></span>
+			<span class="line"><span class="word">exactly</span></span>
+			<span class="line"><span class="word">what You</span></span>
+			<span class="line"><span class="word">Want</span></span>
 		</h1>
 		<picture id="list-picture">
 			<img  src={picture ? picture : null} alt="">
@@ -149,9 +172,9 @@ export async function preload({ params }) {
 		<div id="list-links">
 			<p>Social links</p>
 			<ul>
-				<li><a href="https://www.linkedin.com/in/dona%C3%ABl-walter/">⁕ Linkedin</a></li>
-				<li><a href="https://github.com/Donawalt/">Github ⁕</a></li>
-				<li><a href="https://www.instagram.com/walt_dona/">⁕ Instagram</a></li>
+				<li><a href="https://www.linkedin.com/in/dona%C3%ABl-walter/" class="word">⁕ Linkedin</a></li>
+				<li><a href="https://github.com/Donawalt/" class="word">Github ⁕</a></li>
+				<li><a href="https://www.instagram.com/walt_dona/" class="word">⁕ Instagram</a></li>
 			</ul>
 		</div>
 	</div>
