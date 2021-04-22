@@ -1,5 +1,69 @@
 <script>
     import urlFor from '../../../scripts/urlFor.js'
+    import imagesLoaded from 'imagesloaded'
+    import SplitType from 'split-type'
+    import gsap from 'gsap';
+    import ScrollToPlugin  from 'gsap/ScrollToPlugin'
+    import { stores } from '@sapper/app';
+    const { page } = stores();
+    
+    import { onMount, beforeUpdate, afterUpdate } from 'svelte'
+    
+    let w = false;
+    let t = true;
+    let first = 0;
+    
+    onMount(async ()=>{
+        w = true;
+        console.log(stores)
+        console.log($page)
+    })
+
+    function initAnim(){
+        // document.querySelector('h1').innerHTML = Title;
+
+        setTimeout(() => {
+            const headeSplit = new SplitType("h1", {type: "chars"})
+        imagesLoaded( document.querySelector('#cover'), function( instance ) {
+            let tl = gsap.timeline();
+         gsap.set("h1", {opacity: 1, overflow: "hidden"})
+        tl.fromTo('header h1 .char', {
+            opacity: 0,
+            y: 100
+        }, {
+            opacity: 1,
+            y:0,
+            duration: 1,
+            stagger: { // wrap advanced options in an object
+                each: 0.05, 
+                from: "center"
+            }
+        })
+
+        tl.fromTo('header p', {opacity: 0}, {opacity: 1, delay: -0.25})
+        tl.fromTo('#cover', {opacity: 0}, {opacity: 1, onComplete: ()=>{
+            headeSplit.revert();
+            headeSplit = " "
+            document.querySelector('h1').innerHTML = Title
+            gsap.set("h1", {overflow: "auto"})
+        }})
+        });
+        }, 100);
+    }
+
+    $:{
+        gsap.registerPlugin(ScrollToPlugin);
+        console.log($page, 'This is the current Page');
+        if(w){
+            gsap.to(window, { scrollTo: 0})
+            t = false;
+            t = true;
+            console.log(Title);
+            document.querySelector('[data-splitting="header"]').textContent = Title;
+            console.log(document.querySelector('[data-splitting="header"]'))
+            setTimeout(initAnim(), 1);
+        }
+    }
 
     export let Cover;
     export let SubTitle;
@@ -13,6 +77,7 @@
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.7);
             text-align: center;
+            opacity:0;
         }
         h1{
             font-style: normal;
@@ -24,6 +89,7 @@
             text-align:center;
             max-width: 90%;
             margin:auto;
+            opacity: 0;
         }
         @media screen and (max-width: 1024px){
             // Petit Desktop
@@ -56,6 +122,7 @@
         }
     }
     div{
+        opacity:0;
         height: fit-content;
         margin-left: 32px;
         margin-right: 32px;
@@ -80,9 +147,11 @@
 </style>
 <header>
     <p>{SubTitle}</p>
-    <h1>{Title}</h1>
+    {#if t}
+    <h1 data-splitting='header' >{Title}</h1>
+    {/if}
 </header>
-<div>
+<div id="cover">
     <picture>
         <img src={urlFor(Cover).width(1441).height(480)}/>
     </picture>

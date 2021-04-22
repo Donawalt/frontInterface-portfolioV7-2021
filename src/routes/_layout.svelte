@@ -1,10 +1,9 @@
 <script>
 	import { onMount } from 'svelte'
 	import Nav from '../components/Nav.svelte';
-
 	export let segment;
 
-	onMount(()=>{
+	onMount(async ()=>{
 		const noise = () => {
 			let canvas, ctx;
 
@@ -97,7 +96,9 @@
 	})
 </script>
 
-<style lang='scss'>
+<style lang='scss' global>
+	/* your styles go here */
+	@import'../assets/splitting.scss';
 	body{
 		width: 100%;
 	}
@@ -113,8 +114,7 @@
 </style>
 
 <Nav {segment}/>
-
-<main>
+<main data-scroll-container>
 	<slot></slot>
 </main>
 <canvas id='noise'></canvas>

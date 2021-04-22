@@ -1,5 +1,14 @@
 <script>
     import Element from "./utils/CollectionElement.svelte"
+    import gsap from 'gsap';
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    
+    import { onMount } from 'svelte'
+
+    onMount(async () => {
+        gsap.fromTo('.collection-list', {opacity: 0}, {opacity: 1,duration: 1, delay: 0.5});
+    })
 
     export let Posts;
 </script>

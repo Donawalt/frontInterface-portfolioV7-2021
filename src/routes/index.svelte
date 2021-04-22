@@ -4,6 +4,7 @@
 	import * as THREE from "three"
 	import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 	import gsap from "gsap";
+	import SplitType from 'split-type'
 	
 	let stopAnimation = false;
 	let videos ;
@@ -137,7 +138,7 @@
 						console.log("mesh position x", points[ind].positions.x);
 						
 						let tl = gsap.timeline();
-
+						tl.fromTo('h1', {opacity: 1}, {opacity: 0})
 						tl.to(camera.position, {
 						x: mesh.position.x - 2,
 						y: mesh.position.y + 1,
@@ -252,6 +253,7 @@
 		}
 
 		initScene();
+		initTitle();
 	})
 
 	onDestroy(()=>{
@@ -261,6 +263,44 @@
 			console.log(videos);
 		}
 	})
+
+	function initTitle(){
+		let creativeSplit = new SplitType("#creative", {type: "chars"})
+		let developperSplit = new SplitType("#developper", {type: "chars"})
+		
+		gsap.set('#creative', {opacity: 1})
+		gsap.set('#developper', {opacity: 1})
+		let tl = gsap.timeline()
+		tl.fromTo(creativeSplit.chars, {
+            opacity: 0,
+            y: 100
+        }, {
+            opacity: 1,
+            y:0,
+            duration: 1,
+            stagger: { // wrap advanced options in an object
+                each: 0.05, 
+                from: "center"
+            }
+        })
+
+		tl.fromTo(developperSplit.chars, {
+            opacity: 0,
+            y: 100
+        }, {
+            opacity: 1,
+            y:0,
+            duration: 1,
+			delay: -0.5,
+            stagger: { // wrap advanced options in an object
+                each: 0.05, 
+                from: "center"
+            }
+        })
+
+		tl.fromTo('#and', {opacity: 0}, {opacity: 1, delay: -0.25})
+		tl.fromTo('.layer-gl', {opacity: 0, scale: 1.1}, {opacity: 1, scale: 1, duration: 0.6})
+	}
 </script>
 
 <style lang="scss">
@@ -274,7 +314,9 @@
 	left: 0;
 	z-index: -1;
 }
-
+	#creative, #developper, #and{
+		opacity: 0;
+	}
 	#webgl-index-layer{
 		position: absolute;
 		top: 0;
@@ -297,7 +339,16 @@
 					@media screen and (max-width: 425px){
 						transform: scale(0.5);
 					}
+					opacity: 0.8;
+					transition-duration: 300ms;
+					&:hover{
+						transform: scale(1.1);
+					}
 				}
+				&:hover .label{
+						transition-duration: 300ms;
+						opacity: 1;
+					}
 
 				.text{
 					opacity: 0;
@@ -314,6 +365,7 @@
 					font-family: Helvetica, Arial, sans-serif;
 					font-weight: 100;
 					font-size: 14px;
+					transition-duration: 300ms;
 				}
 
 				&:hover .text{
@@ -323,6 +375,9 @@
 		}
 	}
 
+	.layer-gl{
+		opacity: 0;
+	}
 	h1{
 		margin-top: 12vh;
 		color: white;
@@ -331,6 +386,7 @@
 		font-feature-settings: 'ordn' on, 'swsh' on, 'ornm' on;
 		span{
 			display: block;
+			overflow: hidden;
 		}
 		.line-1{
 			font-size: 80px;
@@ -408,7 +464,7 @@
 	<title>Portfolio Donaël Walter | Creative Development, Photography, Design</title>
 </svelte:head>
 
-<section class='webgl-wrapper'>
+<section class='webgl-wrapper  layer-gl'>
 	<canvas class="webgl"></canvas>
 <section id="webgl-index-layer">
 	<div class="option option-0">
@@ -435,9 +491,9 @@
 </section>
 </section>	
 <h1>
-	<span class="line-1">Creative</span>
-	<span class="line-2">Developper</span>
-	<span class="line-3">& Enthusiast Designer</span>
+	<span class="line-1" id="creative">Creative</span>
+	<span class="line-2" id="developper">Developper</span>
+	<span class="line-3" id="and">& Enthusiast Designer</span>
 </h1>
 
 <footer>

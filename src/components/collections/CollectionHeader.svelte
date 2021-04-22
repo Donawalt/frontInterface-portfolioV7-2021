@@ -1,4 +1,32 @@
 <script>
+    import SplitType from 'split-type'
+	import gsap from 'gsap';
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    
+    import { onMount } from 'svelte'
+
+    
+    onMount(async ()=>{
+        gsap.registerPlugin(ScrollTrigger);
+        let headeSplit = new SplitType("[data-splitting='header']", {type: "chars"})
+        let tl = gsap.timeline();
+        tl.fromTo('header h1 .char', {
+            opacity: 0,
+            y: 100
+        }, {
+            opacity: 1,
+            y:0,
+            duration: 1,
+            stagger: { // wrap advanced options in an object
+                each: 0.05, 
+                from: "center"
+            }
+        })
+
+        tl.fromTo('header p', {opacity: 0}, {opacity: 1, delay: -0.25})
+    })
+
     export let pageName;
     export let subTitle;
 </script>
@@ -16,6 +44,7 @@
             font-feature-settings: 'ordn' on, 'swsh' on, 'ornm' on;
             margin:0;
             padding:0;
+            overflow: hidden;
         }
         p{
             margin:0;
@@ -69,6 +98,6 @@
 </style>
 
 <header class="collection-header">
-    <h1 class="collection-header__pageName">{ pageName }</h1>
+    <h1 class="collection-header__pageName"  data-splitting="header">{ pageName }</h1>
     <p class="collection-header__subTitle">{ subTitle }</p>
 </header> 

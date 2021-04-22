@@ -1,5 +1,102 @@
 <script>
 	import Footer from '../components/Footer.svelte'
+	import SplitType from 'split-type'
+	import gsap from 'gsap';
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+
+	import { onMount } from 'svelte'
+	
+	onMount(async()=>{
+		gsap.registerPlugin(ScrollTrigger)
+		let blockTitle = document.querySelectorAll("h2");
+		let blockText = document.querySelectorAll('[data-splitting="lines"]');
+		let blockTable = document.querySelector('#awards-table')
+		let blockExperience = document.querySelector('.illustration')
+		let blockCv = document.querySelectorAll('.experience')
+		
+		let headeSplit = new SplitType("[data-splitting='header']", {type: "chars"})
+		blockTitle.forEach(element => {
+			console.log(element)
+			element.number =  new SplitType(element.querySelector('.number'), { types: "chars"} )
+			element.content = new SplitType(element.querySelector('.content'), { types: "chars"} )
+			gsap.set(element.querySelectorAll('span'), {overflow: 'hidden'});
+			gsap.set(element.querySelectorAll('.char'), {opacity: 0});
+			let tl = gsap.timeline({
+				scrollTrigger : {
+					trigger: element,
+					onEnter: ()=>{
+						console.log('trigger')
+					}
+				}
+			});
+
+			tl.fromTo(element.number.chars,{ y: 10 }, {opacity: 1, y:0, duration: 0.3, stagger: 0.05})
+			tl.fromTo(element.content.chars,{ y: 10 }, {opacity: 1, y:0, duration: 0.3, stagger: 0.1})
+			console.log(element, "after Change");
+		});
+
+		blockText.forEach(el => {
+			el.select = el;
+			el.content = new SplitType(el, { types: "lines, words"} )
+			gsap.set(el.content.lines, { overflow: 'hidden' });
+			gsap.set(el.content.words, { opacity: 0});
+			
+			console.log(el, "this.is")
+			ScrollTrigger.create({
+				trigger: el.select,
+				onEnter: ()=>{
+					let tl1 = gsap.timeline();
+					el.content.lines.forEach((element, index) => {
+						tl1.fromTo(element.querySelectorAll('.word'),{y: 20}, {y: 0, opacity: 1, duration: 0.4, delay: (index === 0 ? 0 : -0.25)});
+					});
+				}
+			})
+			console.log(el)
+		});
+
+		ScrollTrigger.create({
+			trigger: blockTable,
+			onEnter: () =>{
+				let tl = gsap.timeline();
+
+				tl.fromTo(blockTable, {width: 0, opacity: 0}, {width: '100%', duration: 0.6, opacity: 1})
+				blockTable.querySelectorAll('li').forEach(element => {
+					tl.fromTo(element.querySelectorAll('.table-el'), {opacity:0, y:20}, {opacity: 1, y:0})
+				});
+			}
+		})
+		
+		gsap.fromTo(blockCv, {opacity: 0, y: -10}, {opacity: 1, y:0, duration: 1, stagger: 0.3, scrollTrigger: "#previously" })
+		
+		gsap.to(blockExperience.querySelectorAll('.back'),{y: 5, scrollTrigger:{
+			trigger: blockExperience,
+			scrub: true
+		}})
+		gsap.to(blockExperience.querySelectorAll('.middle'),{ y: 50, x: -10, scrollTrigger:{
+			trigger: blockExperience,
+			scrub: true
+		}})
+		gsap.to(blockExperience.querySelectorAll('.front'), { y: -20, scrollTrigger:{
+			trigger: blockExperience,
+			scrub: true
+		}})
+		
+		let tlH = gsap.timeline();
+
+		tlH.fromTo('header h1', {opacity: 0}, {opacity: 1, duration: 1})
+		document.querySelectorAll('[data-splitting="header"]').forEach(element => {
+			tlH.fromTo(element.querySelectorAll('.char'), {opacity:0, y: 10}, {y: 0, opacity: 1, duration: 0.3, stagger: 0.1});
+		});
+		document.querySelectorAll('header picture').forEach(element => {
+			gsap.set(element, {opacity: 0});
+			tlH.to(element, {opacity: 1, width: '100%', duration: 1, delay: -1});
+		});
+
+		console.log(blockTitle);
+		console.log(blockText, 'Show block de text')
+	})
+
 </script>
 <style lang="scss">
 	section{
@@ -51,7 +148,14 @@
                 font-size: 25px;
             }
         }
-    }
+    } 
+	.word{
+		opacity: 0;
+	}
+	header picture{
+		opacity: 0;
+		width: 0; 
+	}
 	header, #intro{
 			grid-column: 2/8;
 			@media screen and (max-width: 768px){
@@ -90,7 +194,7 @@
 				width: 100%;
 				display: flex;
 				border-radius: 16px;
-				background-color: crimson;
+				background-color: white;
 				overflow: hidden;
 				justify-content:center;
 				align-items:center;
@@ -123,10 +227,14 @@
 			@media screen and (max-width: 425px){
 				font-size: 30px;
 			}
+			span.word span.char {
+				display: inline-block;
+				color: blue;
+			}
 		}
 		}
 		}
-		margin-bottom: 200px;
+		margin-bottom: 400px;
 		@media screen and (max-width: 425px){
 				margin-top: 70px;
 				margin-bottom: 30px;
@@ -313,6 +421,7 @@
 			}
 		}
 	}
+
 </style>
 <svelte:head>
 	<title>About</title>
@@ -323,48 +432,48 @@
 		<h1>Who I am ? I am ...</h1>
 		<div>
 			<div>
-				<p>Donaël</p>
-				<picture><img src="/about/awards/top.jpg" alt=""/></picture>
+				<p data-splitting="header" class="titre-one">Donaël</p>
+				<picture class="picture-one"><img src="/about/awards/top.jpg" alt=""/></picture>
 			</div>
 			<div>
-				<picture><img src="/about/awards/bottom.jpg" alt=""/></picture>
-				<p>Walter</p>
+				<picture class="picture-two"><img src="/about/awards/bottom.jpg" alt=""/></picture>
+				<p data-splitting="header" class="titre-two">Walter</p>
 			</div>
 		</div>
 	</header>
-	<div id="intro">
-		<p>
+	<div id="intro" data-intersection="intro">
+		<p data-splitting="lines">
 			Hi, I’m Donaël,  I am a French Creative Dev, I do Photography and Graphic Design alongside.
 		</p>
 	</div>
-	<div id="text">
+	<div id="text" data-intersection="text">
 		<div class="content">
-			<p>
+			<p data-splitting="lines">
 				I’am curently working at <a href="https://www.bihua.fr/" target="_blank" class='hover-effect'>Studio Bihua</a> in the city of <strong>Lyon, France</strong>, and I’m available in <strong>freelancing</strong> for little projects. On top of that,I am in the last year of my training at <a href="https://www.hetic.net" target="_blank"> Hétic</a> School, in <strong>Paris,France</strong>  where I study Web Development & Web Design. 
 			</p>
-			<p>
+			<p data-splitting="lines">
 				Thanks to my previous training at the <a href='https://iutdijon.u-bourgogne.fr/www/'target="_blank">University Institute of Dijon (DUT MMI)</a>, where I was able to explore several fields in "multimedia". I have the ability to lead a project from A to Z, and to understand and adapt to these various issues in order to provide the most adequate solution.
 			</p>
-			<p>
+			<p data-splitting="lines">
 				I love everything to do with visual design, mobile and web projects as well as branding, typography and animations. In the future I would like to work on more immersive and interactive projects, where the user experience is the key word. 
 			</p>
 		</div>
 		<div class="illustration">
-			<picture class=""><img src="/about/grid/team.png" alt=""/></picture>
-			<picture class=""><img src="/about/grid/paris_1.png" alt=""/></picture>
-			<picture class=""><img src="/about/grid/dijon_1.png" alt=""/></picture>
-			<picture class=""><img src="/about/grid/dijon_2.png" alt=""/></picture>
-			<picture class=""><img src="/about/grid/paris_2.png" alt=""/></picture>
+			<picture class="back"><img src="/about/grid/team.png" alt="Photo de l'équipe de STUDIO BIHUA"/></picture>
+			<picture class="back"><img src="/about/grid/paris_1.png" alt="Photo de Paris"/></picture>
+			<picture class="front"><img src="/about/grid/dijon_1.png" alt="Photo de Dijon"/></picture>
+			<picture class="middle"><img src="/about/grid/dijon_2.png" alt="Photo de Dijon"/></picture>
+			<picture class="middle"><img src="/about/grid/paris_2.png" alt="Photo de Paris"/></picture>
 		</div>
 	</div>
-	<div id="previously">
+	<div id="previously" data-intersection="previously"> 
 		<h2><span class='number'>02</span> <span class='content'>Previously</span></h2>
 		<div>
-			<p>
+			<p data-splitting="lines">
 				I’m proud and lucky to have passed through these agencies which taught me a lot and helped me to evolve in relation to my professional project, and the digital world.
 			</p>
 			<ul>
-				<li>
+				<li class="experience">
 					<a href="https://www.opsone.net/" target="_blank">
 						<picture>
 							<img src="/about/opsone_logo.svg" alt="">
@@ -373,7 +482,7 @@
 					<p class="name">OPSONE</p>
 					<p class="position">2019 - 2020 / Work-study position</p>
 				</li>
-				<li>
+				<li class="experience">
 					<a href="https://www.vinium.com/" target="_blank">
 						<picture>
 							<img src="/about/vinium_logo.svg" alt="">
@@ -385,40 +494,40 @@
 			</ul>
 		</div>
 	</div>
-	<div id="awards">
+	<div id="awards" data-intersection="awards">
 		<h2><span class='number'>03</span> <span class='content'>Awards and Featured</span></h2>
 		<div>
-			<p>
+			<p data-splitting="lines">
 				Yes for know the list is pretty short ... <br/>
 				But maybe if we collaborate I'm sure she won't be there long. <br/>
 				Winning prizes is one thing, but working on interesting and useful projects is the main thing. <br/>
 			</p>
-			<ul>
+			<ul class="table" id='awards-table'>
 				<li>
-					<picture class='price-logo'>
+					<picture class='price-logo table-el'>
 						<img src="/about/awards/cssd.svg" />
 					</picture>
-					<a class='award' >Special Kudos</a>
-					<a class="name" >Fédération Française d'Aérostation</a>
+					<a class='award table-el' >Special Kudos</a>
+					<a class="name table-el" >Fédération Française d'Aérostation</a>
 				</li>
 				<li>
-					<picture class='price-logo'>
+					<picture class='price-logo table-el'>
 						<img src="/about/awards/cssd.svg" />
 					</picture>
-					<a class='award' >Site of the Day</a>
-					<a class="name" >Bihua</a>
+					<a class='award table-el' >Site of the Day</a>
+					<a class="name table-el" >Bihua</a>
 				</li>
 				<li>
-					<picture class='price-logo'>
+					<picture class='price-logo table-el'>
 						<img src="/about/awards/maxibestof.svg" />
 					</picture>
-					<a class='award' >Inspiration Feed</a>
-					<a class="name" >Bihua</a>
+					<a class='award table-el' >Inspiration Feed</a>
+					<a class="name table-el" >Bihua</a>
 				</li>
 			</ul>
 		</div>
 	</div>
-	<div id="contact">
+	<div id="contact" data-intersection="contact">
 		<h2><span class='number'>04</span> <span class='content'>Feel free to contact me</span></h2>
 		<a>contact@donaelwalter.com</a>
 	</div>

@@ -1,5 +1,4 @@
 <script context="module">
-
     import client from "../../sanityClient.js"
 
     export async function preload({ params }) {
@@ -19,7 +18,7 @@
     // your script goes here
     import Header from '../../components/collections/CollectionHeader.svelte';
     import List from '../../components/collections/CollectionList.svelte';
-    import Footer from '../../components/Footer.svelte';;
+    import Footer from '../../components/Footer.svelte';
 
     export let posts
 </script>

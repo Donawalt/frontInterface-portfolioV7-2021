@@ -45,12 +45,13 @@
             justify-content: center;
             align-items:center;
             cursor: pointer;
+            transition-duration: 300ms;
         }
         &:hover{
             .top{
                 display: flex;
                 opacity: 1;
-                duration: 300ms;
+                transition-duration: 300ms;
                 
             }
         }
