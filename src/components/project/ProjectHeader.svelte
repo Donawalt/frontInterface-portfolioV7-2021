@@ -1,7 +1,7 @@
 <script>
     import urlFor from '../../../scripts/urlFor.js'
     import imagesLoaded from 'imagesloaded'
-    import SplitType from 'split-type'
+    import SplitTextJS from 'split-text-js';
     import gsap from 'gsap';
     import ScrollToPlugin  from 'gsap/ScrollToPlugin'
     import { stores } from '@sapper/app';
@@ -20,14 +20,14 @@
     })
 
     function initAnim(){
-        // document.querySelector('h1').innerHTML = Title;
+        document.querySelector('h1').innerHTML = Title;
 
         setTimeout(() => {
-            const headeSplit = new SplitType("h1", {type: "chars"})
+            let headeSplit = new SplitTextJS(document.querySelector('h1')) // new SplitType("h1", {type: "chars"})
         imagesLoaded( document.querySelector('#cover'), function( instance ) {
             let tl = gsap.timeline();
          gsap.set("h1", {opacity: 1, overflow: "hidden"})
-        tl.fromTo('header h1 .char', {
+        tl.fromTo(headeSplit.chars, {
             opacity: 0,
             y: 100
         }, {
@@ -42,26 +42,30 @@
 
         tl.fromTo('header p', {opacity: 0}, {opacity: 1, delay: -0.25})
         tl.fromTo('#cover', {opacity: 0}, {opacity: 1, onComplete: ()=>{
-            headeSplit.revert();
-            headeSplit = " "
-            document.querySelector('h1').innerHTML = Title
-            gsap.set("h1", {overflow: "auto"})
+            console.log(headeSplit);
+            // document.querySelector('h1').innerHTML = Title
+            gsap.set("h1", {overflow: "visible"})
+            console.log(headeSplit);
         }})
         });
-        }, 100);
+        }, 1);
     }
 
     $:{
         gsap.registerPlugin(ScrollToPlugin);
         console.log($page, 'This is the current Page');
+    }
+
+    $: {
         if(w){
+            gsap.set('#cover, h1', {opacity: 0})  
             gsap.to(window, { scrollTo: 0})
             t = false;
             t = true;
             console.log(Title);
-            document.querySelector('[data-splitting="header"]').textContent = Title;
+            document.querySelector('[data-splitting="header"]').innerHTML = Title;
             console.log(document.querySelector('[data-splitting="header"]'))
-            setTimeout(initAnim(), 1);
+            setTimeout(initAnim(), 100);
         }
     }
 

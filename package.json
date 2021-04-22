@@ -22,6 +22,7 @@
     "postcss": "^8.2.6",
     "postcss-load-config": "^3.0.1",
     "sirv": "^1.0.0",
+    "split-text-js": "^1.0.3",
     "split-type": "^0.2.5",
     "splitting": "^1.0.6",
     "svelte-preprocess": "^4.6.7",
