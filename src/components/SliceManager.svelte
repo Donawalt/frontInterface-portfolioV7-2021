@@ -1,4 +1,7 @@
 <script>
+    import { onMount} from 'svelte'
+    import gsap from 'gsap'
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
     import Branding from '../components/slices/text/BrandingText.svelte'
     import Citation from '../components/slices/text/CitationText.svelte'
     import Classic from '../components/slices/text/ClassicText.svelte'
@@ -9,6 +12,18 @@
     import OImage from '../components/slices/images/OneImageSimple.svelte';
     import DImage from '../components/slices/images/DoubleImage.svelte'
 
+    onMount(()=>{
+      gsap.registerPlugin(ScrollTrigger)
+      let blockContent = document.querySelectorAll('.grid')
+
+      ScrollTrigger.create({
+        trigger: blockContent,
+        onEnter:()=>{
+          gsap.to(blockContent, {opacity: 1})
+        }
+      })
+    })
+
     export let Slices;
 </script>
 <style lang="scss">
@@ -18,6 +33,7 @@
         column-gap: 16px;
         margin-left: 32px;
         margin-right: 32px;
+        opacity: 0;
         @media screen and (max-width: 429px){
           margin-left: 16px;
           margin-right: 16px;

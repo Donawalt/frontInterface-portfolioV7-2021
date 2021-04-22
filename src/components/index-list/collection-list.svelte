@@ -79,6 +79,15 @@
                 margin-top:0px;
                 padding-top: 30px;
                 padding-left: 16px;
+                text-transform: uppercase;
+                text-stroke: 1px white;
+                -webkit-text-stroke:  1px white;
+                color: transparent;
+                transition-duration: 300ms;
+                &:hover{
+                    color: white;
+                    transition-duration: 300ms;
+                }
             }
         }
             }

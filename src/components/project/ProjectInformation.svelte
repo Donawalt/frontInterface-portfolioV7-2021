@@ -1,8 +1,23 @@
 <script>
     import BlockContent from "@movingbrands/svelte-portable-text";
+    import { onMount} from 'svelte'
+    import gsap from 'gsap'
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
 
     export let Introduction;
     export let Skills;
+
+    onMount(()=>{
+        gsap.registerPlugin(ScrollTrigger)
+      let blockContent = document.querySelectorAll('.information')
+
+      ScrollTrigger.create({
+        trigger: blockContent,
+        onEnter:()=>{
+          gsap.to(blockContent, {opacity: 1})
+        }
+      })
+    })
 
     console.log(Introduction)
 </script>
