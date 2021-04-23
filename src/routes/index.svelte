@@ -462,6 +462,7 @@
 
 <svelte:head>
 	<title>Portfolio Donaël Walter | Creative Development, Photography, Design</title>
+	<meta name="Description" content="Portfolio of Donaël WALTER, Creative Developper, Interactive Designer, Hobbyist Photographer ">
 </svelte:head>
 
 <section class='webgl-wrapper  layer-gl'>
