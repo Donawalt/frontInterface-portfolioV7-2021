@@ -94,6 +94,38 @@
 			videosTextures.texture1.wrapS = THREE.ClampToEdgeWrapping;
 			videosTextures.texture1.wrapT = THREE.RepeatWrapping;
 
+			//
+			videos.video2.width = 1920;
+			videos.video2.height = 1080;
+			videos.video2.src = "/textures/video.mp4";
+			videos.video2.muted = true;
+			videos.video2.loop = true;
+			videos.video2.load();
+			videos.video2.play();
+
+			videosTextures.texture2.repeat.y = 3.64;
+			videosTextures.texture2.repeat.x = 0.82;
+			videosTextures.texture2.rotation = 4.72;
+
+			videosTextures.texture2.wrapS = THREE.ClampToEdgeWrapping;
+			videosTextures.texture2.wrapT = THREE.RepeatWrapping;
+
+			//
+			videos.video3.width = 1920;
+			videos.video3.height = 1080;
+			videos.video3.src = "/textures/video.mp4";
+			videos.video3.muted = true;
+			videos.video3.loop = true;
+			videos.video3.load();
+			videos.video3.play();
+
+			videosTextures.texture3.repeat.y = 3.64;
+			videosTextures.texture3.repeat.x = 0.82;
+			videosTextures.texture3.rotation = 4.72;
+
+			videosTextures.texture3.wrapS = THREE.ClampToEdgeWrapping;
+			videosTextures.texture3.wrapT = THREE.RepeatWrapping;
+
 			window.addEventListener("mousemove", (event) => {
 				cursor.x = event.clientX / sizes.width - 0.5;
 				cursor.y = event.clientY / sizes.height - 0.5;
