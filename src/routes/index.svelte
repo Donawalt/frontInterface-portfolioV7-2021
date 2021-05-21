@@ -163,7 +163,7 @@
 
 					points.push(point);
 
-					point.element.querySelector(".label").addEventListener("click", () => {
+					point.element.addEventListener("click", () => {
 						animatable = true;
 						console.log("click on label", camera);
 						console.log("mesh position Y", points[ind].positions.y);
@@ -361,6 +361,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
+			cursor: pointer;
 
 			.label
 				{
