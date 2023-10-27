@@ -298,10 +298,10 @@
 
 	function initTitle(){
 		let creativeSplit = new SplitType("#creative", {type: "chars"})
-		let developperSplit = new SplitType("#developper", {type: "chars"})
+		let developerSplit = new SplitType("#developer", {type: "chars"})
 		
 		gsap.set('#creative', {opacity: 1})
-		gsap.set('#developper', {opacity: 1})
+		gsap.set('#developer', {opacity: 1})
 		let tl = gsap.timeline()
 		tl.fromTo(creativeSplit.chars, {
             opacity: 0,
@@ -316,7 +316,7 @@
             }
         })
 
-		tl.fromTo(developperSplit.chars, {
+		tl.fromTo(developerSplit.chars, {
             opacity: 0,
             y: 100
         }, {
@@ -346,7 +346,7 @@
 	left: 0;
 	z-index: -1;
 }
-	#creative, #developper, #and{
+	#creative, #developer, #and{
 		opacity: 0;
 	}
 	#webgl-index-layer{
@@ -495,7 +495,7 @@
 
 <svelte:head>
 	<title>Portfolio Donaël Walter | Creative Development, Photography, Design</title>
-	<meta name="Description" content="Portfolio of Donaël WALTER, Creative Developper, Interactive Designer, Hobbyist Photographer ">
+	<meta name="Description" content="Portfolio of Donaël WALTER, Creative developer, Interactive Designer, Hobbyist Photographer ">
 </svelte:head>
 
 <section class='webgl-wrapper  layer-gl'>
@@ -526,7 +526,7 @@
 </section>	
 <h1>
 	<span class="line-1" id="creative">Creative</span>
-	<span class="line-2" id="developper">Developper</span>
+	<span class="line-2" id="developer">developer</span>
 	<span class="line-3" id="and">& Enthusiast Designer</span>
 </h1>
 
